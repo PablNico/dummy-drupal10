@@ -1,0 +1,23 @@
+diff --git a/src/Controller/WebformElementController.php b/src/Controller/WebformElementController.php
+index 204c8e27d..84705fb9e 100644
+--- a/src/Controller/WebformElementController.php
++++ b/src/Controller/WebformElementController.php
+@@ -203,11 +203,13 @@ class WebformElementController extends ControllerBase {
+       // Cast TranslatableMarkup to string.
+       $label = (string) $label;
+
+-      if ($operator === 'STARTS_WITH' && stripos($label, $q) === 0) {
+-        $matches[$label] = [
+-          'value' => $label,
+-          'label' => $label,
+-        ];
++      if ($operator === 'STARTS_WITH') {
++        if (stripos($label, $q) === 0) {
++          $matches[$label] = [
++            'value' => $label,
++            'label' => $label,
++          ];
++        }
+       }
+       // Default to CONTAINS even when operator is empty.
+       elseif (stripos($label, $q) !== FALSE) {
